@@ -1,0 +1,42 @@
+<header class="am-topbar am-topbar-inverse am-header-fixed" >
+  <div class="am-container">
+	<h1 class="am-topbar-brand">
+    <img src="__PUBLIC__/images/logo.png" />
+  </h1>
+  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav am-margin-horizontal-xl" >
+		<volist name="list" id="nav" key="i">
+			<if condition="$i lt 7">
+			<if condition="$nav.id eq $type">
+				<li class="am-active"><a href="{:U('Index/index',array('type'=>$nav['id']))}">{$nav['arttype']}</a></li>
+			<else />
+				<li><a href="{:U('Index/index',array('type'=>$nav['id']))}">{$nav['arttype']}</a></li>
+			</if>
+			</if>
+		</volist>
+      	<li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          全部分类 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <foreach name="list" item="nav">
+			<li><a href="{:U('Index/index',array('type'=>$nav['id']))}">{$nav['arttype']}</a></li>
+		</foreach>
+        </ul>
+      </li>
+    </ul>
+	<ul class="nav-icon">
+		  <li><a href="#"><i class="am-icon-edit am-icon-fw"></i>发布</a></li>
+		  <li id="search"><a href="#"><i class="am-icon-search am-icon-fw"></i>搜索</a></li>
+		  <li><a href="#"><i class="am-icon-tablet am-icon-fw"></i>APP</a></li>
+		  <if condition="$Think.session.user eq '' ">
+			    <li><a href="{$url}"><i class="am-icon-user am-icon-fw"></i>登录/注册</a></li>
+		  <else />
+				<li><a href="{:U('Home/User/index')}"><img class="am-round" src="{$Think.session.logo}"/></a></li>
+		  </if>
+	</ul>
+  </div>
+</div>
+	
+</header>
+

@@ -1,0 +1,43 @@
+<div class="am-u-md-3">
+    <div class="am-panel-group">
+      <section class="am-panel am-panel-default">
+			<div class="user-info">
+				<div class="info-wrap">
+					<div class="img-wrap"></div>
+					<div class="user-logo am-text-center"><img  class="am-round" src="{$Think.session.logo}"></div>
+					<div class="user-name am-text-center">{$Think.session.user}</div>
+				</div>
+				<div class="user-data">
+					 <div class="am-panel-bd">
+						 <ul data-am-widget="gallery" class="am-gallery am-avg-sm-3 center
+						  am-avg-md-3 am-avg-lg-3 am-gallery-default" data-am-gallery="{ pureview: true }" >
+							  <li>
+								<a class="am-icon-thumbs-o-up am-icon-md"></a><div>0</div>
+							  </li>
+							  <li>
+								<a  class="am-icon-commenting-o am-icon-md"></a><div>0</div>
+							  </li>
+							  <li>
+								<a  class="am-icon-share-square-o am-icon-md"></a><div>0</div>
+							  </li>
+						  </ul>
+					</div>
+				</div>
+				
+			</div>
+			
+      </section>
+   <section class="am-panel am-panel-default">
+        <ul class="am-list am-list-static am-list-border am-text-center sider">
+			<li><a href="{:U('User/publish')}" class="am-text-truncate">发布内容</a></li>
+			<li><a href="{:U('User/myblog')}" class="am-text-truncate">我的内容</a></li>			
+			<li><a href="#" class="am-text-truncate">我的消息</a></li>			
+			<li><a href="{:U('User/mycomment')}" class="am-text-truncate">我的评论</a></li>
+			<li><a href="{:U('User/mycollect')}" class="am-text-truncate">我的收藏</a></li>			
+			<li><a href="#" class="am-text-truncate">我的分享</a></li>
+			<li><a href="{:U('Home/User/safeOut')}" class="am-text-truncate">退出登录</a></li>				
+		</ul>
+ </section>
+
+    </div>
+  </div>

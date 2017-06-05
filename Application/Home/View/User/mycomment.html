@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>我的评论</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="__PUBLIC__/assets/i/favicon.png">
+  <link rel="stylesheet" href="__PUBLIC__/assets/css/amazeui.min.css"/>
+   <script src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+  <script src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+  <script src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+  <link rel="stylesheet" href="__PUBLIC__/css/sidebar.css" />
+  <style>
+    @media only screen and (min-width: 1200px) {
+      .blog-g-fixed {
+        max-width: 1200px;
+      }
+    }
+
+    @media only screen and (min-width: 641px) {
+      .blog-sidebar {
+        font-size: 1.4rem;
+      }
+    }
+
+    .blog-main {
+      padding: 20px 0;
+    }
+
+    .blog-title {
+      margin: 10px 0 20px 0;
+    }
+
+    .blog-meta {
+      font-size: 14px;
+      margin: 10px 0 20px 0;
+      color: #222;
+    }
+
+    .blog-meta a {
+      color: #27ae60;
+    }
+
+    .blog-pagination a {
+      font-size: 1.4rem;
+    }
+
+    .blog-team li {
+      padding: 4px;
+    }
+
+    .blog-team img {
+      margin-bottom: 0;
+    }
+
+    .blog-content img,
+    .blog-team img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .blog-footer {
+      padding: 10px 0;
+      text-align: center;
+    }
+	
+  </style>
+  <script>
+	option={
+
+		initialFrameHeight:500,
+		autoFloatEnabled:false,
+		autoHeightEnabled:false
+	};
+	var ue=new baidu.editor.ui.Editor(option);
+	ue.render("editor");
+</script>
+</head>
+<body>
+<include file="./Public/Tpl/header.html" />
+
+
+<div class="am-container">
+<div class="am-g am-g-fixed blog-g-fixed">
+	
+	<include file="./Public/Tpl/sidebar.html" />
+	<!-- 右边--->
+	<div class="am-u-md-9">
+		  <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main am-table-bordered">
+              <thead>
+              <tr>
+                 <th class="table-author am-hide-sm-only">类型</th>
+                 <th class="table-author am-hide-sm-only">封面图</th>
+                 <th class="table-author am-hide-sm-only">标题</th>
+                 <th class="table-num">作者</th>
+                 <th class="table-time">评论时间</th>
+                 <th class="table-num">评论内容</th>
+                 <th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+			  <foreach name="data" item="list">
+              <tr>
+                <td>{$list['articletype']}</td>
+                <foreach name="list.article" item="article">
+					<td><img class="am-center" src="{:str_replace('size','small',$article['imgsrc'])}" /></td>
+					<td class="am-hide-sm-only">{$article['title']}</td>
+					<td>{$article['author']}</td>
+					<td>{$article['time']|date='Y-m-d H:i',###}</td>
+				</foreach>
+				<td>{$list['content']}</td>
+			
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a href="{:U('Home/User/deleteComment',array('id'=>$list['id']))}" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+             </foreach>
+             
+             
+              </tbody>
+            </table>
+            <div class="am-cf">
+				<!--共多少条记录--->
+              <div class="am-fr page1">
+             
+              </div>
+            </div>
+            <hr />
+          </form>
+     </div>   
+	<!----右边--->
+</div>
+</div>
+<footer class="blog-footer">
+  <p>blog template<br/>
+    <small>© Copyright XXX. by the AmazeUI Team.</small>
+  </p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="__PUBLIC__/assets/js/amazeui.min.js"></script>
+<script>
+	$('#doc-form-file').change(function(){
+		previewImg(this);
+	});
+	function previewImg(input) {
+    if (input.files && input.files[0]) {
+        if(input.files[0].size<2097152) {
+            var reader = new FileReader();            
+            reader.onload = function (e) {
+                //加入到预览图
+                
+				//alert(e.target.result);
+				var data = {};
+				data.img_src = e.target.result;
+				$.post('/home/User/dopublish',data, function(ret){
+					if(ret!=0){
+						$('#img-view-box').attr('src', e.target.result);
+						$('#imgSrc').val(ret);
+					}
+				});
+            }
+            reader.readAsDataURL(input.files[0]);
+        }else{
+            input.value="";
+            PromptHide('图片大小不能超出2M');
+        }
+    }
+}
+</script>
+</body>
+</html>

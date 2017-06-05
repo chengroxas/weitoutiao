@@ -1,0 +1,21 @@
+	.am-topbar{min-height:75px;background-color:#fc3;}
+	.am-topbar-inverse .am-topbar-nav > li.am-active > a{background-color:#303030;}
+	.am-nav-pills > li + li{margin-left:0px;}
+	.am-topbar-brand, .am-topbar-nav > li > a{line-height:75px;}
+	.am-topbar-inverse .am-topbar-nav > li > a:hover{color:white;background-color:#303030;}
+	.am-topbar-inverse .am-topbar-nav > li > a{color:black;}
+	body{background:#eee;}
+	.am-container{max-width:1010px;}
+	.am-panel-bd{padding:0px;}
+	.blog-g-fixed{margin-top:100px;}
+	header .am-container{padding-left:0px;}
+	[class*="am-u-"]{padding-left:0px;}
+	.nav-icon{display:inline-block;line-height:43px;margin-bottom:0px;}
+	.nav-icon li{display:inline-block;color:black;float:left;margin-left:9px;}
+	.nav-icon li a{color:black;}
+	.center{text-align:center;}
+	.aboutus{background:white;border-bottom:1px solid;}
+	.am-gallery-bordered > li{padding:0px 5px 0px 0px;}
+	.am-gallery-bordered .am-gallery-item{padding:0px;}
+	.am-list-static.am-list-border > li{padding:0px;}
+	.img-wrap{background:url(../images/e9c22148f5b41ec67708f53b3c7177e5.jpg) center;height:130px;}

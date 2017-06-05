@@ -1,0 +1,18 @@
+<section class="am-panel am-panel-default">
+        <div class="am-panel-hd">热门</div>
+         <ul  id="showtitle" data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-avg-md-1 am-avg-lg-1 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
+		  <foreach name="hot" item="list">
+			  <li >
+				<div class="am-gallery-item" >
+					<div >
+						<p></p>
+						<a href="{:U('Article/index',array('type'=>$list['type'],'id'=>$list['id']))}" >
+							<img  src="{:str_replace('size','middle',$list['imgsrc'])}"  alt="{$list['title']}"/>
+							<input type="hidden" value="{$list['title']}"/>
+						</a>
+					</div>
+				</div>
+			  </li>
+		  </foreach>
+		</ul>
+	</section>
